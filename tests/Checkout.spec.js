@@ -12,13 +12,9 @@ test("Checkout", async ({ page }) => {
   const shippingMeth = main.checkoutShippingMethod();
   const payment = main.checkoutPayment();
 
-  //Login Details
-  const email = "avishkar123@gmail.com";
-  const password = "123456789";
-
   await login.goto();
   await login.gotoLoginPage();
-  await login.loginDetails(email, password);
+  await login.loginDetails(dataSet.email, dataSet.password);
 
   //shopping cart count
   const count = await page.locator("#topcartlink .cart-qty").innerText();
@@ -34,7 +30,7 @@ test("Checkout", async ({ page }) => {
   //navigate to checkout
   await navCheckout.NavtoCheckout();
 
-  //Checkout
+  //Checkout--Start
 
   //Billing Address
   const addressDropdown = page.locator(".address-select");
@@ -53,7 +49,6 @@ test("Checkout", async ({ page }) => {
   }
 
   //Shipping Address
-  // await page.waitForTimeout(300)
   await continueButton.continueBtn().nth(1).click();
 
   //Shipping Method
@@ -77,11 +72,12 @@ test("Checkout", async ({ page }) => {
   // Confirm Order
   await continueButton.confirmBtn();
 
+  //wait 
   await page.waitForLoadState("networkidle");
 
+  //Verify order success
   const text = await page.locator(".title").innerText();
   console.log(text);
-
   await expect(page.locator(".title")).toHaveText(
     "Your order has been successfully processed!"
   );
