@@ -7,6 +7,7 @@ import ContinueBtn from "./ContinueBtn.js";
 import ShippingMethod from "./ShippingMethod.js";
 import PaymentInfo from "./PaymentInfo.js";
 import PaymentMethod from "./PaymentMethod.js";
+import Payment from "./Payment.js";
 
 class Main{ 
     constructor(page){ 
@@ -20,6 +21,7 @@ class Main{
         this.shippingMethod= new ShippingMethod(this.page)
         this.paymentInfo= new PaymentInfo(this.page)
         this.paymentMethod= new PaymentMethod(this.page)
+        this.payment=new Payment(this.page)
     }
 
     getLoginPage(){ 
@@ -54,9 +56,14 @@ class Main{
         return this.paymentInfo;
     }
 
+    checkoutPayment(){ 
+        return this.payment;
+    }
+
     clickContinueBtn(){ 
         return this.continueBtn;
     }
+
 
 }
 
