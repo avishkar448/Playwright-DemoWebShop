@@ -6,8 +6,12 @@
     "address1":"Andheri west",
     "zip":"451235",
     "phone":"9754874589",
-    "credit-card":"visa",
-    "cardholder-name":"Avishkar",
-    "cardno":"4111111111111111",
-    "cardcode":"123"
+    "creditCard":"Visa",
+    "cardholderName":"Avishkar",
+    "cardNo":"4111111111111111",
+    "cardCode":"123",
+    "expMonth":"07",
+    "expYear":"2026",
+    "PONumber":"123456"
+    
 }

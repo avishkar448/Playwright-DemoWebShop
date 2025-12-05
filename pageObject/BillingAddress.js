@@ -11,9 +11,9 @@ class BillingAddress {
     this.continueBtnLocator = page.getByRole("button", { name: "Continue" });
     this.addressSelect = page.locator(".address-select");
   }
-//   async continueBtn() {
-//     await this.continueBtnLocator.click();
-//   }
+  //   async continueBtn() {
+  //     await this.continueBtnLocator.click();
+  //   }
 
   async setBillingAddress(company, city, address, zipCode, phoneNo) {
     if (await this.company.isVisible()) {
