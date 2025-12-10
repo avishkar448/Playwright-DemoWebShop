@@ -1,9 +1,9 @@
 class ShippingMethod {
   constructor(page) {
     this.page = page;
-    this.ground = page.locator("#shippingoption_0");
-    this.nextDayAir = page.locator("#shippingoption_1");
-    this.secondDayAir = page.locator("#shippingoption_2");
+    this.ground = page.getByRole('radio', { name: 'Ground (0.00)' });
+    this.nextDayAir = page.getByRole('radio', { name: 'Next Day Air (0.00)' });
+    this.secondDayAir = page.getByRole('radio', { name: '2nd Day Air (0.00)' });
   }
 
   async setGround() {

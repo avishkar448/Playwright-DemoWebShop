@@ -10,12 +10,12 @@ class Payment{
         this.ContinueBtn=new ContinueBtn(this.page);
 
         this.creaditCardType=page.locator("#CreditCardType");
-        this.cardHolderName=page.locator("#CardholderName")
-        this.cardNumber=page.locator("#CardNumber")
+        this.cardHolderName=page.getByRole('textbox', { name: 'Cardholder name' });
+        this.cardNumber=page.getByRole('textbox', { name: 'Card number' });
         this.expMonth=page.locator("#ExpireMonth")
         this.expYear=page.locator("#ExpireYear")
-        this.cardCode=page.locator("#CardCode")
-        this.poNumber=page.locator("#PurchaseOrderNumber")
+        this.cardCode=page.getByRole('textbox', { name: 'Card code' });
+        this.poNumber= page.getByRole('textbox', { name: 'PO Number' });
     }
     
 

@@ -33,8 +33,8 @@ test("Checkout", async ({ page }) => {
   //Checkout--Start
 
   //Billing Address
-  const addressDropdown = page.locator(".address-select");
-
+  const addressDropdown = page.locator("#billing-address-select");
+  await page.waitForTimeout(1000)
   if (await addressDropdown.isVisible()) {
     await continueButton.continueBtn().nth(0).click();
   } else {
@@ -73,7 +73,8 @@ test("Checkout", async ({ page }) => {
   await continueButton.confirmBtn();
 
   //wait 
-  await page.waitForLoadState("networkidle");
+  // await page.waitForLoadState("load");
+  await page.waitForURL("**/checkout/completed/");
 
   //Verify order success
   const text = await page.locator(".title").innerText();
