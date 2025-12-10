@@ -1,9 +1,9 @@
 class LoginPage {
   constructor(page) {
     this.page = page;
-    this.navLogin = page.locator("a[href='/login']");
-    this.email = page.locator("#Email");
-    this.password = page.locator("#Password");
+    this.navLogin = page.getByRole('link', { name: 'Log in' });
+    this.email = page.getByRole('textbox', { name: 'Email:' });
+    this.password = page.getByRole('textbox', { name: 'Password:' });
     this.loginBtn = page.getByRole("button", { name: "Log in" });
   }
 

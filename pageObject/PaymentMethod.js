@@ -1,10 +1,10 @@
 class PaymentMethod {
   constructor(page) {
     this.page = page;
-    this.cod = page.locator("#paymentmethod_0");
-    this.moneyOrder = page.locator("#paymentmethod_1");
-    this.creditCard = page.locator("#paymentmethod_2");
-    this.pOrder = page.locator("#paymentmethod_3");
+    this.cod = page.getByRole('radio', { name: 'Cash On Delivery (COD) (7.00' });
+    this.moneyOrder = page.getByRole('radio', { name: 'Check / Money Order (5.00)' });
+    this.creditCard = page.getByRole('radio', { name: 'Credit Card Credit Card' });
+    this.pOrder = page.getByRole('radio', { name: 'Purchase Order Purchase Order' });
   }
 
   async setCashOnDelivery() {

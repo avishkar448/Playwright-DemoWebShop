@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "regression" : "npx playwright test tests/Checkout.spec.js",
+    "login":"npx playwright test tests/Login.spec.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

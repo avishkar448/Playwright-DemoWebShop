@@ -1,9 +1,9 @@
 class NavToCheckout {
   constructor(page) {
     this.page = page;
-    this.shoppingCart = page.locator("#topcartlink");
-    this.termsCheckbox = page.locator("#termsofservice");
-    this.checkoutBtn = page.locator("#checkout");
+    this.shoppingCart = page.getByRole('link', { name: /Shopping cart \(\d+\)/ });
+    this.termsCheckbox = page.locator('#termsofservice');
+    this.checkoutBtn = page.getByRole('button', { name: 'Checkout' });
   }
 
   async NavtoCheckout() {
