@@ -34,7 +34,8 @@ test("Checkout", async ({ page }) => {
 
   //Billing Address
   const addressDropdown = page.locator("#billing-address-select");
-  await page.waitForTimeout(1000)
+  // await page.waitForTimeout(1000);
+  await page.waitForLoadState("load");
   if (await addressDropdown.isVisible()) {
     await continueButton.continueBtn().nth(0).click();
   } else {
@@ -72,8 +73,7 @@ test("Checkout", async ({ page }) => {
   // Confirm Order
   await continueButton.confirmBtn();
 
-  //wait 
-  // await page.waitForLoadState("load");
+  //wait
   await page.waitForURL("**/checkout/completed/");
 
   //Verify order success
@@ -82,6 +82,4 @@ test("Checkout", async ({ page }) => {
   await expect(page.locator(".title")).toHaveText(
     "Your order has been successfully processed!"
   );
-
-  await page.screenshot({ path: "screenshot/order.png" });
 });

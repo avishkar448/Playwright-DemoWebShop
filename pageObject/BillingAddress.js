@@ -1,12 +1,14 @@
 class BillingAddress {
   constructor(page) {
     this.page = page;
-    this.company = page.locator("#BillingNewAddress_Company");
-    this.country = page.locator("#BillingNewAddress_CountryId");
-    this.city = page.locator("#BillingNewAddress_City");
-    this.address = page.locator("#BillingNewAddress_Address1");
-    this.zipCode = page.locator("#BillingNewAddress_ZipPostalCode");
-    this.phoneNo = page.locator("#BillingNewAddress_PhoneNumber");
+    this.company = page.getByRole("textbox", { name: "Company:" });
+    this.country = page.getByLabel("Country:");
+    this.city = page.getByRole("textbox", { name: "City:" });
+    this.address = page.getByRole("textbox", { name: "Address 1:" });
+    this.zipCode = page.getByRole("textbox", {
+      name: "Zip / postal code:",
+    });
+    this.phoneNo = page.getByRole("textbox", { name: "Phone number:" });
 
     this.continueBtnLocator = page.getByRole("button", { name: "Continue" });
     this.addressSelect = page.locator(".address-select");
