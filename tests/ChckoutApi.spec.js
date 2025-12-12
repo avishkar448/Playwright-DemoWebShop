@@ -1,8 +1,21 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, request } from "@playwright/test";
+import APIUtils from "./utils/APIUtils.js";
 import Main from "../pageObject/Main.js";
 const dataSet = JSON.parse(JSON.stringify(require("./utils/userInfo.json")));
 
-test("Checkout", async ({ page }) => {
+let Context;
+
+test.beforeAll(async ({ browser }) => {
+  const api = await request.newContext();
+  const apiUtils = new APIUtils(api);
+  await apiUtils.loginAPI(dataSet.email, dataSet.password);
+  await apiUtils.addToCart();
+  const storage = await apiUtils.getStorageState();
+  Context = await browser.newContext({ storageState: storage });
+});
+
+test("@API Checkout", async () => {
+  const page = await Context.newPage();
   const main = new Main(page);
   const login = main.getLoginPage();
   const continueButton = main.clickContinueBtn();
@@ -13,16 +26,6 @@ test("Checkout", async ({ page }) => {
   const payment = main.checkoutPayment();
 
   await login.goto();
-  await login.gotoLoginPage();
-  await login.loginDetails(dataSet.email, dataSet.password);
-
-  //shopping cart count
-  const count = await page.locator("#topcartlink .cart-qty").innerText();
-  let number = Number(count.replace(/[()]/g, ""));
-  console.log(number);
-
-  //Add the book to cart
-  await addToCart.AddTheProductToCart();
 
   //wait
   await page.waitForLoadState("networkidle");
